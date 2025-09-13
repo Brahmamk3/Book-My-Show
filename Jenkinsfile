@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'nodejs'          // Your Node.js installation name in Jenkins
+        nodejs 'nodejs'          // Node.js installation in Jenkins
     }
 
     stages {
@@ -15,11 +15,15 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-tool') {
-                    sh ''' 
-                        $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectName=BMS \
-                        -Dsonar.projectKey=BMS
-                    '''
+                    script {
+                        def scannerHome = tool 'sonar-scanner'
+                        sh """
+                            ${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=BMS \
+                            -Dsonar.projectName=BMS \
+                            -Dsonar.sources=.
+                        """
+                    }
                 }
             }
         }
@@ -67,12 +71,12 @@ pipeline {
         always {
             emailext(
                 to: 'sakamuriveera@gmail.com',
-                subject: '$PROJECT_NAME Build #$BUILD_NUMBER - $BUILD_STATUS',
+                subject: "${env.JOB_NAME} Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
                 body: """
-                    <b>Project:</b> $PROJECT_NAME<br/>
-                    <b>Build Number:</b> $BUILD_NUMBER<br/>
-                    <b>Build URL:</b> <a href='$BUILD_URL'>$BUILD_URL</a><br/>
-                    <b>Status:</b> $BUILD_STATUS
+                    <b>Project:</b> ${env.JOB_NAME}<br/>
+                    <b>Build Number:</b> ${env.BUILD_NUMBER}<br/>
+                    <b>Build URL:</b> <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a><br/>
+                    <b>Status:</b> ${currentBuild.currentResult}
                 """,
                 mimeType: 'text/html',
                 attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
