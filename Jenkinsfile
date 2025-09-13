@@ -3,7 +3,6 @@ pipeline {
 
     tools {
         nodejs 'nodejs'          // Your Node.js installation name in Jenkins
-        dockerTool 'docker'      // Optional: if you configured Docker tool
     }
 
     stages {
