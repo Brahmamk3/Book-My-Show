@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'nodejs'        // Name of your Node.js installation in Jenkins
-        sonarQube 'sonar-tool' // SonarQube installation name
+        nodejs 'nodejs'          // Your Node.js installation name in Jenkins
+        dockerTool 'docker'      // Optional: if you configured Docker tool
     }
 
     stages {
