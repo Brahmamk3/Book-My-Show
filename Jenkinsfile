@@ -16,7 +16,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonar-tool') {
                     script {
-                        def scannerHome = tool 'sonar-scanner'
+                        def scannerHome = tool 'sonar-tool'
                         sh """
                             ${scannerHome}/bin/sonar-scanner \
                             -Dsonar.projectKey=BMS \
