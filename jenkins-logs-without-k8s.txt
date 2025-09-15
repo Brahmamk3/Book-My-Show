@@ -1,0 +1,1191 @@
+Started by user jj
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/book-my-show-without-k8s
+[Pipeline] {
+[Pipeline] tool
+Unpacking https://repo1.maven.org/maven2/org/sonarsource/scanner/cli/sonar-scanner-cli/7.2.0.5079/sonar-scanner-cli-7.2.0.5079.zip to /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner on Jenkins
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+Unpacking https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.8.1%2B1/OpenJDK17U-jdk_x64_linux_hotspot_17.0.8.1_1.tar.gz to /var/lib/jenkins/tools/hudson.model.JDK/jdk17 on Jenkins
+[Pipeline] envVarsForTool
+[Pipeline] tool
+Unpacking https://nodejs.org/dist/v24.8.0/node-v24.8.0-linux-x64.tar.gz to /var/lib/jenkins/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/node23 on Jenkins
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clean Workspace)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Checkout from Git)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/Brahmamk3/Book-My-Show.git
+ > git init /var/lib/jenkins/workspace/book-my-show-without-k8s # timeout=10
+Fetching upstream changes from https://github.com/Brahmamk3/Book-My-Show.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/Brahmamk3/Book-My-Show.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/Brahmamk3/Book-My-Show.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 342c49d63576338d808d14204a4eeead1acd7ac4 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 342c49d63576338d808d14204a4eeead1acd7ac4 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b main 342c49d63576338d808d14204a4eeead1acd7ac4 # timeout=10
+Commit message: "Update Jenkinsfile1"
+First time build. Skipping changelog.
+[Pipeline] sh
++ ls -la
+total 68
+drwxr-xr-x 4 jenkins jenkins  4096 Sep 14 05:45 .
+drwxr-xr-x 4 jenkins jenkins  4096 Sep 14 05:45 ..
+drwxr-xr-x 8 jenkins jenkins  4096 Sep 14 05:45 .git
+-rw-r--r-- 1 jenkins jenkins 30439 Sep 14 05:45 BMS-Document.txt
+-rw-r--r-- 1 jenkins jenkins  3683 Sep 14 05:45 Jenkinsfile1
+-rw-r--r-- 1 jenkins jenkins  3991 Sep 14 05:45 Jenkinsfile2
+-rw-r--r-- 1 jenkins jenkins  1371 Sep 14 05:45 README.md
+drwxr-xr-x 4 jenkins jenkins  4096 Sep 14 05:45 bookmyshow-app
+-rw-r--r-- 1 jenkins jenkins   418 Sep 14 05:45 deployment.yml
+-rw-r--r-- 1 jenkins jenkins   219 Sep 14 05:45 service.yml
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (SonarQube Analysis)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withSonarQubeEnv
+Injecting SonarQube environment variables using the configuration: sonar-server
+[Pipeline] {
+[Pipeline] sh
++ /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin/sonar-scanner -Dsonar.projectName=BMS -Dsonar.projectKey=BMS
+05:45:56.195 INFO  Scanner configuration file: /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/conf/sonar-scanner.properties
+05:45:56.200 INFO  Project root configuration file: NONE
+05:45:56.220 INFO  SonarScanner CLI 7.2.0.5079
+05:45:56.222 INFO  Linux 6.14.0-1011-aws amd64
+05:45:57.151 INFO  Communicating with SonarQube Server 9.9.8.100196
+05:45:58.211 INFO  Load global settings
+05:45:58.297 INFO  Load global settings (done) | time=86ms
+05:45:58.299 INFO  Server id: 147B411E-AZlGo1LREHOVApvLj3OR
+05:45:58.304 INFO  User cache: /var/lib/jenkins/.sonar/cache
+05:45:58.307 INFO  Load/download plugins
+05:45:58.307 INFO  Load plugins index
+05:45:58.364 INFO  Load plugins index (done) | time=57ms
+05:46:00.084 INFO  Load/download plugins (done) | time=1777ms
+05:46:00.616 INFO  Process project properties
+05:46:00.617 INFO  Process project properties (done) | time=1ms
+05:46:00.619 INFO  Execute project builders
+05:46:00.620 INFO  Execute project builders (done) | time=1ms
+05:46:00.623 INFO  Project key: BMS
+05:46:00.623 INFO  Base dir: /var/lib/jenkins/workspace/book-my-show-without-k8s
+05:46:00.623 INFO  Working dir: /var/lib/jenkins/workspace/book-my-show-without-k8s/.scannerwork
+05:46:00.631 INFO  Load project settings for component key: 'BMS'
+05:46:00.771 INFO  Auto-configuring with CI 'Jenkins'
+05:46:00.773 INFO  Load quality profiles
+05:46:00.886 INFO  Load quality profiles (done) | time=113ms
+05:46:00.898 INFO  Load active rules
+05:46:03.191 INFO  Load active rules (done) | time=2293ms
+05:46:03.196 INFO  Load analysis cache
+05:46:03.201 INFO  Load analysis cache (404) | time=5ms
+05:46:03.249 INFO  Load project repositories
+05:46:03.254 INFO  Load project repositories (done) | time=5ms
+05:46:03.289 INFO  Indexing files...
+05:46:03.290 INFO  Project configuration:
+05:46:03.619 INFO  106 files indexed
+05:46:03.619 INFO  0 files ignored because of scm ignore settings
+05:46:03.621 INFO  Quality profile for css: Sonar way
+05:46:03.621 INFO  Quality profile for js: Sonar way
+05:46:03.621 INFO  Quality profile for json: Sonar way
+05:46:03.621 INFO  Quality profile for web: Sonar way
+05:46:03.621 INFO  Quality profile for yaml: Sonar way
+05:46:03.621 INFO  ------------- Run sensors on module BMS
+05:46:03.712 INFO  Load metrics repository
+05:46:03.741 INFO  Load metrics repository (done) | time=29ms
+05:46:05.210 INFO  Sensor JaCoCo XML Report Importer [jacoco]
+05:46:05.211 INFO  'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+05:46:05.212 INFO  No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+05:46:05.212 INFO  Sensor JaCoCo XML Report Importer [jacoco] (done) | time=2ms
+05:46:05.212 INFO  Sensor IaC CloudFormation Sensor [iac]
+05:46:05.433 INFO  0 source files to be analyzed
+05:46:05.501 INFO  0/0 source files have been analyzed
+05:46:05.502 INFO  Sensor IaC CloudFormation Sensor [iac] (done) | time=290ms
+05:46:05.502 INFO  Sensor IaC Kubernetes Sensor [iac]
+05:46:05.580 INFO  2 source files to be analyzed
+05:46:05.714 INFO  2/2 source files have been analyzed
+05:46:05.714 INFO  Sensor IaC Kubernetes Sensor [iac] (done) | time=212ms
+05:46:05.715 INFO  Sensor JavaScript analysis [javascript]
+05:46:09.657 WARN  Node.js version 24 is not recommended, you might experience issues. Please use a recommended version of Node.js [16, 18]
+05:46:09.674 INFO  62 source files to be analyzed
+05:46:14.243 INFO  62/62 source files have been analyzed
+05:46:14.243 INFO  Hit the cache for 0 out of 62
+05:46:14.244 INFO  Miss the cache for 62 out of 62: ANALYSIS_MODE_INELIGIBLE [62/62]
+05:46:14.245 INFO  Sensor JavaScript analysis [javascript] (done) | time=8530ms
+05:46:14.245 INFO  Sensor TypeScript analysis [javascript]
+05:46:14.245 INFO  No input files found for analysis
+05:46:14.246 INFO  Hit the cache for 0 out of 0
+05:46:14.246 INFO  Miss the cache for 0 out of 0
+05:46:14.246 INFO  Sensor TypeScript analysis [javascript] (done) | time=1ms
+05:46:14.246 INFO  Sensor JavaScript inside YAML analysis [javascript]
+05:46:14.247 INFO  No input files found for analysis
+05:46:14.247 INFO  Hit the cache for 0 out of 0
+05:46:14.248 INFO  Miss the cache for 0 out of 0
+05:46:14.248 INFO  Sensor JavaScript inside YAML analysis [javascript] (done) | time=2ms
+05:46:14.248 INFO  Sensor CSS Rules [javascript]
+05:46:14.253 INFO  17 source files to be analyzed
+05:46:14.539 INFO  17/17 source files have been analyzed
+05:46:14.540 INFO  Hit the cache for 0 out of 0
+05:46:14.540 INFO  Miss the cache for 0 out of 0
+05:46:14.540 INFO  Sensor CSS Rules [javascript] (done) | time=292ms
+05:46:14.540 INFO  Sensor CSS Metrics [javascript]
+05:46:14.617 INFO  Sensor CSS Metrics [javascript] (done) | time=77ms
+05:46:14.617 INFO  Sensor C# Project Type Information [csharp]
+05:46:14.618 INFO  Sensor C# Project Type Information [csharp] (done) | time=1ms
+05:46:14.618 INFO  Sensor C# Analysis Log [csharp]
+05:46:14.629 INFO  Sensor C# Analysis Log [csharp] (done) | time=11ms
+05:46:14.629 INFO  Sensor C# Properties [csharp]
+05:46:14.630 INFO  Sensor C# Properties [csharp] (done) | time=1ms
+05:46:14.630 INFO  Sensor HTML [web]
+05:46:14.659 INFO  Sensor HTML [web] (done) | time=29ms
+05:46:14.659 INFO  Sensor TextAndSecretsSensor [text]
+05:46:14.667 INFO  84 source files to be analyzed
+05:46:15.224 INFO  84/84 source files have been analyzed
+05:46:15.224 INFO  Sensor TextAndSecretsSensor [text] (done) | time=565ms
+05:46:15.224 INFO  Sensor VB.NET Project Type Information [vbnet]
+05:46:15.225 INFO  Sensor VB.NET Project Type Information [vbnet] (done) | time=1ms
+05:46:15.225 INFO  Sensor VB.NET Analysis Log [vbnet]
+05:46:15.237 INFO  Sensor VB.NET Analysis Log [vbnet] (done) | time=11ms
+05:46:15.237 INFO  Sensor VB.NET Properties [vbnet]
+05:46:15.237 INFO  Sensor VB.NET Properties [vbnet] (done) | time=0ms
+05:46:15.237 INFO  Sensor IaC Docker Sensor [iac]
+05:46:15.240 INFO  1 source file to be analyzed
+05:46:15.309 INFO  1/1 source file has been analyzed
+05:46:15.309 INFO  Sensor IaC Docker Sensor [iac] (done) | time=72ms
+05:46:15.313 INFO  ------------- Run sensors on project
+05:46:15.368 INFO  Sensor Analysis Warnings import [csharp]
+05:46:15.369 INFO  Sensor Analysis Warnings import [csharp] (done) | time=1ms
+05:46:15.369 INFO  Sensor Zero Coverage Sensor
+05:46:15.387 INFO  Sensor Zero Coverage Sensor (done) | time=18ms
+05:46:15.389 INFO  SCM Publisher SCM provider for this project is: git
+05:46:15.390 INFO  SCM Publisher 81 source files to be analyzed
+05:46:15.786 INFO  SCM Publisher 81/81 source files have been analyzed (done) | time=395ms
+05:46:15.800 INFO  CPD Executor 10 files had no CPD blocks
+05:46:15.800 INFO  CPD Executor Calculating CPD for 53 files
+05:46:15.849 INFO  CPD Executor CPD calculation finished (done) | time=48ms
+05:46:15.936 INFO  Analysis report generated in 77ms, dir size=733.8 kB
+05:46:16.082 INFO  Analysis report compressed in 145ms, zip size=417.3 kB
+05:46:16.320 INFO  Analysis report uploaded in 238ms
+05:46:16.322 INFO  ANALYSIS SUCCESSFUL, you can find the results at: http://13.42.11.18:9000/dashboard?id=BMS
+05:46:16.322 INFO  Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+05:46:16.322 INFO  More about the report processing at http://13.42.11.18:9000/api/ce/task?id=AZlGwoFnEHOVApvLkBHs
+05:46:16.896 INFO  Analysis total time: 16.676 s
+05:46:16.897 INFO  EXECUTION SUCCESS
+05:46:16.898 INFO  Total time: 20.748s
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Quality Gate)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] waitForQualityGate
+Checking status of SonarQube task 'AZlGwoFnEHOVApvLkBHs' on server 'sonar-server'
+SonarQube task 'AZlGwoFnEHOVApvLkBHs' status is 'PENDING'
+SonarQube task 'AZlGwoFnEHOVApvLkBHs' status is 'SUCCESS'
+SonarQube task 'AZlGwoFnEHOVApvLkBHs' completed. Quality gate is 'OK'
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Install Dependencies)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ cd bookmyshow-app
++ ls -la
+total 1584
+drwxr-xr-x 4 jenkins jenkins    4096 Sep 14 05:45 .
+drwxr-xr-x 5 jenkins jenkins    4096 Sep 14 05:46 ..
+-rw-r--r-- 1 jenkins jenkins     591 Sep 14 05:45 Dockerfile
+-rw-r--r-- 1 jenkins jenkins    3369 Sep 14 05:45 README.md
+-rw-r--r-- 1 jenkins jenkins 1592100 Sep 14 05:45 package-lock.json
+-rw-r--r-- 1 jenkins jenkins    1422 Sep 14 05:45 package.json
+drwxr-xr-x 3 jenkins jenkins    4096 Sep 14 05:45 public
+drwxr-xr-x 7 jenkins jenkins    4096 Sep 14 05:45 src
++ [ -f package.json ]
++ rm -rf node_modules package-lock.json
++ npm install
+npm warn ERESOLVE overriding peer dependency
+npm warn ERESOLVE overriding peer dependency
+npm warn ERESOLVE overriding peer dependency
+npm warn deprecated move-concurrently@1.0.1: This package is no longer supported.
+npm warn deprecated figgy-pudding@3.5.2: This module is no longer supported.
+npm warn deprecated fs-write-stream-atomic@1.0.10: This package is no longer supported.
+npm warn deprecated copy-concurrently@1.0.5: This package is no longer supported.
+npm warn deprecated @hapi/topo@3.1.6: This version has been deprecated and is no longer supported or maintained
+npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+npm warn deprecated @hapi/bourne@1.3.2: This version has been deprecated and is no longer supported or maintained
+npm warn deprecated rollup-plugin-terser@5.3.1: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+npm warn deprecated lodash.template@4.5.0: This package is deprecated. Use https://socket.dev/npm/package/eta instead.
+npm warn deprecated rollup-plugin-babel@4.4.0: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-babel.
+npm warn deprecated @hapi/address@2.1.4: Moved to 'npm install @sideway/address'
+npm warn deprecated @hapi/hoek@8.5.1: This version has been deprecated and is no longer supported or maintained
+npm warn deprecated workbox-google-analytics@5.1.4: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
+npm warn deprecated @npmcli/move-file@1.1.2: This functionality has been moved to @npmcli/fs
+npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+npm warn deprecated source-map-url@0.4.1: See https://github.com/lydell/source-map-url#deprecated
+npm warn deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+npm warn deprecated q@1.5.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+npm warn deprecated
+npm warn deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+npm warn deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+npm warn deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+npm warn deprecated flatten@1.0.3: flatten is deprecated in favor of utility frameworks such as lodash.
+npm warn deprecated @hapi/joi@15.1.1: Switch to 'npm install joi'
+npm warn deprecated querystring@0.2.1: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+npm warn deprecated domexception@2.0.1: Use your platform's native DOMException instead
+npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+npm warn deprecated sane@4.1.0: some dependency vulnerabilities fixed, support for node < 10 dropped, and newer ECMAScript syntax/features added
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated @humanwhocodes/config-array@0.5.0: Use @eslint/config-array instead
+npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+npm warn deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+npm warn deprecated @humanwhocodes/object-schema@1.2.1: Use @eslint/object-schema instead
+npm warn deprecated babel-eslint@10.1.0: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
+npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+npm warn deprecated @babel/plugin-proposal-private-property-in-object@7.21.11: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated @material-ui/styles@4.11.5: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
+npm warn deprecated eslint@7.32.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+npm warn deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+npm warn deprecated @material-ui/core@4.12.4: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
+
+added 2331 packages, and audited 2540 packages in 1m
+
+251 packages are looking for funding
+  run `npm fund` for details
+
+139 vulnerabilities (100 moderate, 32 high, 7 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (OWASP FS Scan)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] dependencyCheck
+Unpacking https://github.com/dependency-check/DependencyCheck/releases/download/v12.1.3/dependency-check-12.1.3-release.zip to /var/lib/jenkins/tools/org.jenkinsci.plugins.DependencyCheck.tools.DependencyCheckInstallation/DP-Check on Jenkins
+[INFO] Checking for updates
+[WARN] An NVD API Key was not provided - it is highly recommended to use an NVD API key as the update can take a VERY long time without an API Key
+[INFO] NVD API has 309,438 records in this update
+[INFO] Downloaded 10,000/309,438 (3%)
+[INFO] Downloaded 20,000/309,438 (6%)
+[INFO] Downloaded 30,000/309,438 (10%)
+[INFO] Downloaded 40,000/309,438 (13%)
+[INFO] Downloaded 50,000/309,438 (16%)
+[INFO] Downloaded 60,000/309,438 (19%)
+[INFO] Downloaded 70,000/309,438 (23%)
+[INFO] Downloaded 80,000/309,438 (26%)
+[INFO] Downloaded 90,000/309,438 (29%)
+[INFO] Downloaded 100,000/309,438 (32%)
+[INFO] Downloaded 110,000/309,438 (36%)
+[INFO] Downloaded 120,000/309,438 (39%)
+[INFO] Downloaded 130,000/309,438 (42%)
+[INFO] Downloaded 140,000/309,438 (45%)
+[INFO] Downloaded 150,000/309,438 (48%)
+[INFO] Downloaded 160,000/309,438 (52%)
+[INFO] Downloaded 170,000/309,438 (55%)
+[INFO] Downloaded 180,000/309,438 (58%)
+[INFO] Downloaded 190,000/309,438 (61%)
+[INFO] Downloaded 200,000/309,438 (65%)
+[INFO] Downloaded 210,000/309,438 (68%)
+[INFO] Downloaded 220,000/309,438 (71%)
+[INFO] Downloaded 230,000/309,438 (74%)
+[INFO] Downloaded 240,000/309,438 (78%)
+[INFO] Downloaded 250,000/309,438 (81%)
+[INFO] Downloaded 260,000/309,438 (84%)
+[INFO] Downloaded 270,000/309,438 (87%)
+[INFO] Downloaded 280,000/309,438 (90%)
+[INFO] Downloaded 290,000/309,438 (94%)
+[INFO] Downloaded 300,000/309,438 (97%)
+[INFO] Downloaded 309,438/309,438 (100%)
+[INFO] Completed processing batch 1/155 (1%) in 2,165ms
+[INFO] Completed processing batch 2/155 (1%) in 1,792ms
+[INFO] Completed processing batch 3/155 (2%) in 1,833ms
+[INFO] Completed processing batch 4/155 (3%) in 1,351ms
+[INFO] Completed processing batch 5/155 (3%) in 1,573ms
+[INFO] Completed processing batch 6/155 (4%) in 1,381ms
+[INFO] Completed processing batch 7/155 (5%) in 1,413ms
+[INFO] Completed processing batch 8/155 (5%) in 1,475ms
+[INFO] Completed processing batch 9/155 (6%) in 1,481ms
+[INFO] Completed processing batch 10/155 (6%) in 1,616ms
+[INFO] Completed processing batch 11/155 (7%) in 1,299ms
+[INFO] Completed processing batch 12/155 (8%) in 1,366ms
+[INFO] Completed processing batch 13/155 (8%) in 1,317ms
+[INFO] Completed processing batch 14/155 (9%) in 1,342ms
+[INFO] Completed processing batch 15/155 (10%) in 1,587ms
+[INFO] Completed processing batch 16/155 (10%) in 1,665ms
+[INFO] Completed processing batch 17/155 (11%) in 1,922ms
+[INFO] Completed processing batch 18/155 (12%) in 1,681ms
+[INFO] Completed processing batch 19/155 (12%) in 2,016ms
+[INFO] Completed processing batch 20/155 (13%) in 2,036ms
+[INFO] Completed processing batch 21/155 (14%) in 2,104ms
+[INFO] Completed processing batch 22/155 (14%) in 2,120ms
+[INFO] Completed processing batch 23/155 (15%) in 3,330ms
+[INFO] Completed processing batch 24/155 (15%) in 2,937ms
+[INFO] Completed processing batch 25/155 (16%) in 2,627ms
+[INFO] Completed processing batch 26/155 (17%) in 3,862ms
+[INFO] Completed processing batch 27/155 (17%) in 2,741ms
+[INFO] Completed processing batch 28/155 (18%) in 2,528ms
+[INFO] Completed processing batch 29/155 (19%) in 2,276ms
+[INFO] Completed processing batch 30/155 (19%) in 2,136ms
+[INFO] Completed processing batch 31/155 (20%) in 2,091ms
+[INFO] Completed processing batch 32/155 (21%) in 1,832ms
+[INFO] Completed processing batch 33/155 (21%) in 1,505ms
+[INFO] Completed processing batch 34/155 (22%) in 1,509ms
+[INFO] Completed processing batch 35/155 (23%) in 1,513ms
+[INFO] Completed processing batch 36/155 (23%) in 1,336ms
+[INFO] Completed processing batch 37/155 (24%) in 1,139ms
+[INFO] Completed processing batch 38/155 (25%) in 1,492ms
+[INFO] Completed processing batch 39/155 (25%) in 1,410ms
+[INFO] Completed processing batch 40/155 (26%) in 1,258ms
+[INFO] Completed processing batch 41/155 (26%) in 1,280ms
+[INFO] Completed processing batch 42/155 (27%) in 914ms
+[INFO] Completed processing batch 43/155 (28%) in 1,110ms
+[INFO] Completed processing batch 44/155 (28%) in 285ms
+[INFO] Completed processing batch 45/155 (29%) in 366ms
+[INFO] Completed processing batch 46/155 (30%) in 1,164ms
+[INFO] Completed processing batch 47/155 (30%) in 1,190ms
+[INFO] Completed processing batch 48/155 (31%) in 1,205ms
+[INFO] Completed processing batch 49/155 (32%) in 1,046ms
+[INFO] Completed processing batch 50/155 (32%) in 877ms
+[INFO] Completed processing batch 51/155 (33%) in 973ms
+[INFO] Completed processing batch 52/155 (34%) in 570ms
+[INFO] Completed processing batch 53/155 (34%) in 840ms
+[INFO] Completed processing batch 54/155 (35%) in 1,042ms
+[INFO] Completed processing batch 55/155 (35%) in 1,067ms
+[INFO] Completed processing batch 56/155 (36%) in 1,009ms
+[INFO] Completed processing batch 57/155 (37%) in 909ms
+[INFO] Completed processing batch 58/155 (37%) in 955ms
+[INFO] Completed processing batch 59/155 (38%) in 919ms
+[INFO] Completed processing batch 60/155 (39%) in 785ms
+[INFO] Completed processing batch 61/155 (39%) in 815ms
+[INFO] Completed processing batch 62/155 (40%) in 1,065ms
+[INFO] Completed processing batch 63/155 (41%) in 930ms
+[INFO] Completed processing batch 64/155 (41%) in 974ms
+[INFO] Completed processing batch 65/155 (42%) in 993ms
+[INFO] Completed processing batch 66/155 (43%) in 950ms
+[INFO] Completed processing batch 67/155 (43%) in 828ms
+[INFO] Completed processing batch 68/155 (44%) in 852ms
+[INFO] Completed processing batch 69/155 (45%) in 940ms
+[INFO] Completed processing batch 70/155 (45%) in 887ms
+[INFO] Completed processing batch 71/155 (46%) in 953ms
+[INFO] Completed processing batch 72/155 (46%) in 893ms
+[INFO] Completed processing batch 73/155 (47%) in 870ms
+[INFO] Completed processing batch 74/155 (48%) in 1,102ms
+[INFO] Completed processing batch 75/155 (48%) in 787ms
+[INFO] Completed processing batch 76/155 (49%) in 993ms
+[INFO] Completed processing batch 77/155 (50%) in 764ms
+[INFO] Completed processing batch 78/155 (50%) in 805ms
+[INFO] Completed processing batch 79/155 (51%) in 783ms
+[INFO] Completed processing batch 80/155 (52%) in 999ms
+[INFO] Completed processing batch 81/155 (52%) in 893ms
+[INFO] Completed processing batch 82/155 (53%) in 995ms
+[INFO] Completed processing batch 83/155 (54%) in 760ms
+[INFO] Completed processing batch 84/155 (54%) in 1,004ms
+[INFO] Completed processing batch 85/155 (55%) in 817ms
+[INFO] Completed processing batch 86/155 (55%) in 897ms
+[INFO] Completed processing batch 87/155 (56%) in 967ms
+[INFO] Completed processing batch 88/155 (57%) in 886ms
+[INFO] Completed processing batch 89/155 (57%) in 578ms
+[INFO] Completed processing batch 90/155 (58%) in 959ms
+[INFO] Completed processing batch 91/155 (59%) in 873ms
+[INFO] Completed processing batch 92/155 (59%) in 818ms
+[INFO] Completed processing batch 93/155 (60%) in 1,113ms
+[INFO] Completed processing batch 94/155 (61%) in 852ms
+[INFO] Completed processing batch 95/155 (61%) in 901ms
+[INFO] Completed processing batch 96/155 (62%) in 899ms
+[INFO] Completed processing batch 97/155 (63%) in 743ms
+[INFO] Completed processing batch 98/155 (63%) in 762ms
+[INFO] Completed processing batch 99/155 (64%) in 859ms
+[INFO] Completed processing batch 100/155 (65%) in 982ms
+[INFO] Completed processing batch 101/155 (65%) in 765ms
+[INFO] Completed processing batch 102/155 (66%) in 733ms
+[INFO] Completed processing batch 103/155 (66%) in 774ms
+[INFO] Completed processing batch 104/155 (67%) in 919ms
+[INFO] Completed processing batch 105/155 (68%) in 725ms
+[INFO] Completed processing batch 106/155 (68%) in 744ms
+[INFO] Completed processing batch 107/155 (69%) in 900ms
+[INFO] Completed processing batch 108/155 (70%) in 782ms
+[INFO] Completed processing batch 109/155 (70%) in 902ms
+[INFO] Completed processing batch 110/155 (71%) in 815ms
+[INFO] Completed processing batch 111/155 (72%) in 963ms
+[INFO] Completed processing batch 112/155 (72%) in 867ms
+[INFO] Completed processing batch 113/155 (73%) in 605ms
+[INFO] Completed processing batch 114/155 (74%) in 927ms
+[INFO] Completed processing batch 115/155 (74%) in 904ms
+[INFO] Completed processing batch 116/155 (75%) in 944ms
+[INFO] Completed processing batch 117/155 (75%) in 817ms
+[INFO] Completed processing batch 118/155 (76%) in 814ms
+[INFO] Completed processing batch 119/155 (77%) in 975ms
+[INFO] Completed processing batch 120/155 (77%) in 891ms
+[INFO] Completed processing batch 121/155 (78%) in 649ms
+[INFO] Completed processing batch 122/155 (79%) in 611ms
+[INFO] Completed processing batch 123/155 (79%) in 551ms
+[INFO] Completed processing batch 124/155 (80%) in 423ms
+[INFO] Completed processing batch 125/155 (81%) in 502ms
+[INFO] Completed processing batch 126/155 (81%) in 410ms
+[INFO] Completed processing batch 127/155 (82%) in 678ms
+[INFO] Completed processing batch 128/155 (83%) in 627ms
+[INFO] Completed processing batch 129/155 (83%) in 668ms
+[INFO] Completed processing batch 130/155 (84%) in 694ms
+[INFO] Completed processing batch 131/155 (85%) in 686ms
+[INFO] Completed processing batch 132/155 (85%) in 708ms
+[INFO] Completed processing batch 133/155 (86%) in 657ms
+[INFO] Completed processing batch 134/155 (86%) in 697ms
+[INFO] Completed processing batch 135/155 (87%) in 679ms
+[INFO] Completed processing batch 136/155 (88%) in 440ms
+[INFO] Completed processing batch 137/155 (88%) in 373ms
+[INFO] Completed processing batch 138/155 (89%) in 393ms
+[INFO] Completed processing batch 139/155 (90%) in 384ms
+[INFO] Completed processing batch 140/155 (90%) in 408ms
+[INFO] Completed processing batch 141/155 (91%) in 571ms
+[INFO] Completed processing batch 142/155 (92%) in 353ms
+[INFO] Completed processing batch 143/155 (92%) in 519ms
+[INFO] Completed processing batch 144/155 (93%) in 331ms
+[INFO] Completed processing batch 145/155 (94%) in 458ms
+[INFO] Completed processing batch 146/155 (94%) in 406ms
+[INFO] Completed processing batch 147/155 (95%) in 518ms
+[INFO] Completed processing batch 148/155 (95%) in 476ms
+[INFO] Completed processing batch 149/155 (96%) in 511ms
+[INFO] Completed processing batch 150/155 (97%) in 434ms
+[INFO] Completed processing batch 151/155 (97%) in 531ms
+[INFO] Completed processing batch 152/155 (98%) in 495ms
+[INFO] Completed processing batch 153/155 (99%) in 491ms
+[INFO] Completed processing batch 154/155 (99%) in 354ms
+[INFO] Completed processing batch 155/155 (100%) in 150ms
+[INFO] Updating CISA Known Exploited Vulnerability list: https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+[INFO] Begin database defrag
+[INFO] End database defrag (6569 ms)
+[INFO] Check for updates complete (1548049 ms)
+[INFO] 
+
+Dependency-Check is an open source tool performing a best effort analysis of 3rd party dependencies; false positives and false negatives may exist in the analysis performed by the tool. Use of the tool and the reporting provided constitutes acceptance for use in an AS IS condition, and there are NO warranties, implied or otherwise, with regard to the analysis or its use. Any use of the tool and the reporting provided is at the user's risk. In no event shall the copyright holder or OWASP be held liable for any damages whatsoever arising out of or in connection with the use of this tool, the analysis performed, or the resulting report.
+
+
+   About ODC: https://dependency-check.github.io/DependencyCheck/general/internals.html
+   False Positives: https://dependency-check.github.io/DependencyCheck/general/suppression.html
+
+💖 Sponsor: https://github.com/sponsors/jeremylong
+
+
+[INFO] Analysis Started
+[INFO] Finished File Name Analyzer (0 seconds)
+[ERROR] ----------------------------------------------------
+[ERROR] .NET Assembly Analyzer could not be initialized and at least one 'exe' or 'dll' was scanned. The 'dotnet' executable could not be found on the path; either disable the Assembly Analyzer or add the path to dotnet core in the configuration.
+[ERROR] The dotnet 8.0 core runtime or SDK is required to analyze assemblies
+[ERROR] ----------------------------------------------------
+[WARN] dependency skipped: node module fsevents seems optional and not installed
+[WARN] dependency skipped: package.json contain an alias for string-width-cjs => string-width@^4.2.0 npm audit doesn't support aliases
+[WARN] dependency skipped: package.json contain an alias for strip-ansi-cjs => strip-ansi@^6.0.1 npm audit doesn't support aliases
+[WARN] dependency skipped: package.json contain an alias for wrap-ansi-cjs => wrap-ansi@^7.0.0 npm audit doesn't support aliases
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@isaacs/cliui/node_modules/string-width/node_modules/eastasianwidth/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/agent/node_modules/socks-proxy-agent/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@isaacs/string-locale-compare/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/installed-package-contents/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/map-workspaces/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/metavuln-calculator/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/name-from-folder/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/node-gyp/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/query/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/redact/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/bin-links/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/common-ancestor-path/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/json-stringify-nice/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/nopt/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/npm-install-checks/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/npm-pick-manifest/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/pacote/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/parse-conflict-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/proggy/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/promise-all-reject-late/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/promise-call-limit/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/read-package-json-fast/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/treeverse/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/arborist/node_modules/walk-up-path/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/config/node_modules/@npmcli/map-workspaces/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/config/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/config/node_modules/nopt/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/config/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/config/node_modules/walk-up-path/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/git/node_modules/@npmcli/promise-spawn/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/git/node_modules/npm-pick-manifest/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/git/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/git/node_modules/promise-retry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/installed-package-contents/node_modules/npm-bundled/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/installed-package-contents/node_modules/npm-normalize-package-bin/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/map-workspaces/node_modules/@npmcli/name-from-folder/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/map-workspaces/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/@npmcli/git/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/@npmcli/installed-package-contents/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/@npmcli/promise-spawn/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/npm-packlist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/npm-pick-manifest/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/promise-retry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/metavuln-calculator/node_modules/pacote/node_modules/sigstore/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/package-json/node_modules/@npmcli/git/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/package-json/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/run-script/node_modules/@npmcli/node-gyp/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/run-script/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/run-script/node_modules/@npmcli/promise-spawn/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/run-script/node_modules/node-gyp/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@npmcli/run-script/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@sigstore/tuf/node_modules/@sigstore/protobuf-specs/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/@sigstore/tuf/node_modules/tuf-js/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/bin-links/node_modules/cmd-shim/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/bin-links/node_modules/npm-normalize-package-bin/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/bin-links/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/bin-links/node_modules/read-cmd-shim/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/cacache/node_modules/tar/node_modules/@isaacs/fs-minipass/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/glob/node_modules/foreground-child/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/glob/node_modules/jackspeak/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/glob/node_modules/package-json-from-dist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/glob/node_modules/path-scurry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/init-package-json/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/init-package-json/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/init-package-json/node_modules/promzard/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/init-package-json/node_modules/read/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/init-package-json/node_modules/validate-npm-package-name/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/ip-address/node_modules/jsbn/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/is-cidr/node_modules/cidr-regex/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/jackspeak/node_modules/@isaacs/cliui/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmaccess/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmaccess/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmdiff/node_modules/@npmcli/arborist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmdiff/node_modules/@npmcli/installed-package-contents/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmdiff/node_modules/diff/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmdiff/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmdiff/node_modules/pacote/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/@npmcli/arborist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/pacote/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/read/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/read-package-json-fast/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmexec/node_modules/walk-up-path/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmfund/node_modules/@npmcli/arborist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmhook/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmorg/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmpack/node_modules/@npmcli/arborist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmpack/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmpack/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmpack/node_modules/pacote/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmpublish/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmpublish/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmpublish/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmpublish/node_modules/sigstore/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmsearch/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmteam/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmversion/node_modules/@npmcli/git/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmversion/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/libnpmversion/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/make-fetch-happen/node_modules/@npmcli/agent/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/make-fetch-happen/node_modules/http-cache-semantics/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/make-fetch-happen/node_modules/minipass-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/make-fetch-happen/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/make-fetch-happen/node_modules/promise-retry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/minipass-fetch/node_modules/minipass-sized/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/env-paths/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/exponential-backoff/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/make-fetch-happen/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/nopt/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/tinyglobby/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/node-gyp/node_modules/tar/node_modules/@isaacs/fs-minipass/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/nopt/node_modules/abbrev/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-bundled/node_modules/npm-normalize-package-bin/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-package-arg/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-package-arg/node_modules/validate-npm-package-name/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-packlist/node_modules/ignore-walk/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-pick-manifest/node_modules/npm-install-checks/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-pick-manifest/node_modules/npm-normalize-package-bin/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-pick-manifest/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-profile/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-profile/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/@npmcli/redact/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/jsonparse/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/make-fetch-happen/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/minipass-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/npm-registry-fetch/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/@npmcli/git/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/@npmcli/installed-package-contents/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/@npmcli/package-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/@npmcli/promise-spawn/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/@npmcli/run-script/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/npm-package-arg/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/npm-packlist/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/npm-pick-manifest/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/npm-registry-fetch/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/promise-retry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/pacote/node_modules/sigstore/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/parse-conflict-json/node_modules/just-diff/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/parse-conflict-json/node_modules/just-diff-apply/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/promise-retry/node_modules/err-code/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/promzard/node_modules/read/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/read/node_modules/mute-stream/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/read-package-json-fast/node_modules/npm-normalize-package-bin/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/protobuf-specs/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/tuf/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/bundle/node_modules/@sigstore/protobuf-specs/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/@sigstore/bundle/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/@sigstore/core/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/@sigstore/protobuf-specs/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/make-fetch-happen/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/proc-log/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/sign/node_modules/promise-retry/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/verify/node_modules/@sigstore/bundle/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/verify/node_modules/@sigstore/core/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/sigstore/node_modules/@sigstore/verify/node_modules/@sigstore/protobuf-specs/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/socks/node_modules/ip-address/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/socks/node_modules/smart-buffer/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/socks-proxy-agent/node_modules/socks/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/tuf-js/node_modules/make-fetch-happen/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/tuf-js/node_modules/@tufjs/models/node_modules/@tufjs/canonical-json/package.json
+[WARN] Unable to find node module: /var/lib/jenkins/workspace/book-my-show-without-k8s/bookmyshow-app/node_modules/npm/node_modules/wrap-ansi/node_modules/string-width/node_modules/eastasianwidth/package.json
+[WARN] dependency skipped: node module fsevents seems optional and not installed
+[WARN] dependency skipped: node module fsevents seems optional and not installed
+[INFO] Finished Node.js Package Analyzer (25 seconds)
+[INFO] Finished Dependency Merging Analyzer (17 seconds)
+[INFO] Finished Hint Analyzer (0 seconds)
+[INFO] Finished Version Filter Analyzer (0 seconds)
+[INFO] Created CPE Index (2 seconds)
+[INFO] Finished CPE Analyzer (9 seconds)
+[INFO] Finished False Positive Analyzer (0 seconds)
+[INFO] Finished NVD CVE Analyzer (0 seconds)
+[INFO] Finished RetireJS Analyzer (145 seconds)
+[INFO] Finished Sonatype OSS Index Analyzer (14 seconds)
+[INFO] Finished Vulnerability Suppression Analyzer (0 seconds)
+[INFO] Finished Known Exploited Vulnerability Analyzer (0 seconds)
+[INFO] Finished Dependency Bundling Analyzer (246 seconds)
+[INFO] Finished Unused Suppression Rule Analyzer (0 seconds)
+[INFO] Analysis Complete (458 seconds)
+[INFO] Writing XML report to: /var/lib/jenkins/workspace/book-my-show-without-k8s/./dependency-check-report.xml
+[Pipeline] dependencyCheckPublisher
+Collecting Dependency-Check artifact
+Parsing file /var/lib/jenkins/workspace/book-my-show-without-k8s/dependency-check-report.xml
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Trivy FS Scan)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ trivy fs .
+2025-09-14T06:22:05Z	INFO	[vulndb] Need to update DB
+2025-09-14T06:22:05Z	INFO	[vulndb] Downloading vulnerability DB...
+2025-09-14T06:22:05Z	INFO	[vulndb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-db:2"
+19.06 MiB / 70.47 MiB [---------------->____________________________________________] 27.05% ? p/s ?45.25 MiB / 70.47 MiB [--------------------------------------->_____________________] 64.21% ? p/s ?70.47 MiB / 70.47 MiB [----------------------------------------------------------->] 100.00% ? p/s ?70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 85.56 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 85.56 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 85.56 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 80.04 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 80.04 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 80.04 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 74.88 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 74.88 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 74.88 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 70.05 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 70.05 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 70.05 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [---------------------------------------------->] 100.00% 65.53 MiB p/s ETA 0s70.47 MiB / 70.47 MiB [-------------------------------------------------] 100.00% 22.68 MiB p/s 3.3s2025-09-14T06:22:09Z	INFO	[vulndb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-db:2"
+2025-09-14T06:22:09Z	INFO	[vuln] Vulnerability scanning is enabled
+2025-09-14T06:22:09Z	INFO	[secret] Secret scanning is enabled
+2025-09-14T06:22:09Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2025-09-14T06:22:09Z	INFO	[secret] Please see https://trivy.dev/v0.66/docs/scanner/secret#recommendation for faster secret detection
+2025-09-14T06:22:12Z	WARN	[secret] The size of the scanned file is too large. It is recommended to use `--skip-files` for this file to avoid high memory consumption.	file_path="dependency-check-report.xml" size (MB)=28
+2025-09-14T06:22:17Z	INFO	Number of language-specific files	num=1
+2025-09-14T06:22:17Z	INFO	[npm] Detecting vulnerabilities...
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Build & Push)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withDockerRegistry
+Downloading Docker client latest
+Unpacking https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz to /var/lib/jenkins/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/docker on Jenkins
+$ /var/lib/jenkins/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/docker/bin/docker login -u brahmamk015 -p ******** https://index.docker.io/v1/
+Login Succeeded
+[Pipeline] {
+[Pipeline] sh
++ echo Building Docker image...
+Building Docker image...
++ docker build --no-cache -t brahmamk015/bookmyshow:latest -f bookmyshow-app/Dockerfile bookmyshow-app
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 630B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:18
+#2 ...
+
+#3 [auth] library/node:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:18
+#2 DONE 1.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/node:18@sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783
+#5 resolve docker.io/library/node:18@sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783 0.0s done
+#5 sha256:b50082bc3670d0396b2d90e4b0e5bb10265ba5d0ee16bf40f9a505f7045ee563 6.39kB / 6.39kB done
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 0B / 64.40MB 0.2s
+#5 sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783 6.41kB / 6.41kB done
+#5 sha256:eb29363371ee2859fad6a3c5af88d4abc6ff7d399addb13b7de3c1f11bdee6b9 2.49kB / 2.49kB done
+#5 sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 0B / 48.49MB 0.2s
+#5 sha256:37927ed901b1b2608b72796c6881bf645480268eca4ac9a37b9219e050bb4d84 0B / 24.02MB 0.2s
+#5 sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 5.24MB / 48.49MB 0.4s
+#5 sha256:37927ed901b1b2608b72796c6881bf645480268eca4ac9a37b9219e050bb4d84 2.45MB / 24.02MB 0.4s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 4.19MB / 64.40MB 0.6s
+#5 sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 16.78MB / 48.49MB 0.6s
+#5 sha256:37927ed901b1b2608b72796c6881bf645480268eca4ac9a37b9219e050bb4d84 15.73MB / 24.02MB 0.6s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 9.44MB / 64.40MB 0.7s
+#5 sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 22.02MB / 48.49MB 0.7s
+#5 sha256:37927ed901b1b2608b72796c6881bf645480268eca4ac9a37b9219e050bb4d84 19.92MB / 24.02MB 0.7s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 14.68MB / 64.40MB 0.8s
+#5 sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 26.21MB / 48.49MB 0.8s
+#5 sha256:37927ed901b1b2608b72796c6881bf645480268eca4ac9a37b9219e050bb4d84 24.02MB / 24.02MB 0.8s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 19.92MB / 64.40MB 0.9s
+#5 sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 34.60MB / 48.49MB 0.9s
+#5 sha256:37927ed901b1b2608b72796c6881bf645480268eca4ac9a37b9219e050bb4d84 24.02MB / 24.02MB 0.8s done
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 0B / 211.36MB 0.9s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 26.21MB / 64.40MB 1.0s
+#5 sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 40.89MB / 48.49MB 1.0s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 31.46MB / 64.40MB 1.1s
+#5 sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 48.49MB / 48.49MB 1.1s
+#5 sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 48.49MB / 48.49MB 1.2s done
+#5 sha256:cda7f44f2bddcc4bb7514474024b3f3705de00ddb6355a33be5ac7808e5b7125 0B / 3.32kB 1.2s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 38.80MB / 64.40MB 1.3s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 13.63MB / 211.36MB 1.3s
+#5 extracting sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 49.28MB / 64.40MB 1.5s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 30.41MB / 211.36MB 1.5s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 54.53MB / 64.40MB 1.6s
+#5 sha256:cda7f44f2bddcc4bb7514474024b3f3705de00ddb6355a33be5ac7808e5b7125 3.32kB / 3.32kB 1.5s done
+#5 sha256:c6b30c3f16966552af10ac00521f60355b1fcfd46ac1c20b1038587e28583ce7 0B / 45.68MB 1.6s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 59.77MB / 64.40MB 1.7s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 44.04MB / 211.36MB 1.7s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 63.96MB / 64.40MB 1.8s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 55.57MB / 211.36MB 1.9s
+#5 sha256:c6b30c3f16966552af10ac00521f60355b1fcfd46ac1c20b1038587e28583ce7 8.39MB / 45.68MB 1.9s
+#5 sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 64.40MB / 64.40MB 2.1s done
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 67.11MB / 211.36MB 2.1s
+#5 sha256:c6b30c3f16966552af10ac00521f60355b1fcfd46ac1c20b1038587e28583ce7 19.92MB / 45.68MB 2.1s
+#5 sha256:3697be50c98b9d071df4637e1d3491d00e7b9f3a732768c876d82309b3c5a145 0B / 1.25MB 2.1s
+#5 sha256:c6b30c3f16966552af10ac00521f60355b1fcfd46ac1c20b1038587e28583ce7 25.17MB / 45.68MB 2.2s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 80.74MB / 211.36MB 2.3s
+#5 sha256:c6b30c3f16966552af10ac00521f60355b1fcfd46ac1c20b1038587e28583ce7 31.46MB / 45.68MB 2.3s
+#5 sha256:c6b30c3f16966552af10ac00521f60355b1fcfd46ac1c20b1038587e28583ce7 36.70MB / 45.68MB 2.4s
+#5 sha256:3697be50c98b9d071df4637e1d3491d00e7b9f3a732768c876d82309b3c5a145 1.25MB / 1.25MB 2.4s done
+#5 sha256:c6b30c3f16966552af10ac00521f60355b1fcfd46ac1c20b1038587e28583ce7 44.04MB / 45.68MB 2.5s
+#5 sha256:461077a72fb7fe40d34a37d6a1958c4d16772d0dd77f572ec50a1fdc41a3754d 0B / 446B 2.5s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 100.25MB / 211.36MB 2.7s
+#5 sha256:c6b30c3f16966552af10ac00521f60355b1fcfd46ac1c20b1038587e28583ce7 45.68MB / 45.68MB 2.6s done
+#5 sha256:461077a72fb7fe40d34a37d6a1958c4d16772d0dd77f572ec50a1fdc41a3754d 446B / 446B 2.6s done
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 114.29MB / 211.36MB 2.9s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 130.02MB / 211.36MB 3.1s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 145.75MB / 211.36MB 3.3s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 165.68MB / 211.36MB 3.5s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 181.59MB / 211.36MB 3.7s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 197.13MB / 211.36MB 3.9s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 211.36MB / 211.36MB 4.1s
+#5 sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 211.36MB / 211.36MB 4.8s done
+#5 extracting sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 5.1s
+#5 extracting sha256:3e6b9d1a95114e19f12262a4e8a59ad1d1a10ca7b82108adcf0605a200294964 5.5s done
+#5 extracting sha256:37927ed901b1b2608b72796c6881bf645480268eca4ac9a37b9219e050bb4d84
+#5 extracting sha256:37927ed901b1b2608b72796c6881bf645480268eca4ac9a37b9219e050bb4d84 1.3s done
+#5 extracting sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0
+#5 ...
+
+#6 [internal] load build context
+#6 transferring context: 180.57MB 10.1s
+#6 transferring context: 418.59MB 15.3s
+#6 transferring context: 500.14MB 16.9s done
+#6 DONE 17.1s
+
+#5 [1/6] FROM docker.io/library/node:18@sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783
+#5 extracting sha256:79b2f47ad4443652b9b5cc81a95ede249fd976310efdbee159f29638783778c0 6.0s done
+#5 extracting sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 2.3s
+#5 extracting sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 7.4s
+#5 extracting sha256:e23f099911d692f62b851cf49a1e93294288a115f5cd2d014180e4d3684d34ab 9.0s done
+#5 extracting sha256:cda7f44f2bddcc4bb7514474024b3f3705de00ddb6355a33be5ac7808e5b7125
+#5 extracting sha256:cda7f44f2bddcc4bb7514474024b3f3705de00ddb6355a33be5ac7808e5b7125 done
+#5 extracting sha256:c6b30c3f16966552af10ac00521f60355b1fcfd46ac1c20b1038587e28583ce7
+#5 extracting sha256:c6b30c3f16966552af10ac00521f60355b1fcfd46ac1c20b1038587e28583ce7 2.4s done
+#5 extracting sha256:3697be50c98b9d071df4637e1d3491d00e7b9f3a732768c876d82309b3c5a145
+#5 extracting sha256:3697be50c98b9d071df4637e1d3491d00e7b9f3a732768c876d82309b3c5a145 0.0s done
+#5 extracting sha256:461077a72fb7fe40d34a37d6a1958c4d16772d0dd77f572ec50a1fdc41a3754d done
+#5 DONE 28.0s
+
+#7 [2/6] WORKDIR /app
+#7 DONE 4.9s
+
+#8 [3/6] COPY package.json package-lock.json ./
+#8 DONE 0.1s
+
+#9 [4/6] RUN npm install postcss@8.4.21 postcss-safe-parser@6.0.0 --legacy-peer-deps
+#9 10.59 npm warn deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+#9 10.74 npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+#9 11.30 npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+#9 11.31 npm warn deprecated source-map-url@0.4.1: See https://github.com/lydell/source-map-url#deprecated
+#9 11.44 npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+#9 11.44 npm warn deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+#9 11.81 npm warn deprecated sane@4.1.0: some dependency vulnerabilities fixed, support for node < 10 dropped, and newer ECMAScript syntax/features added
+#9 11.82 npm warn deprecated rollup-plugin-terser@5.3.1: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+#9 11.86 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#9 11.96 npm warn deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+#9 12.24 npm warn deprecated rollup-plugin-babel@4.4.0: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-babel.
+#9 12.37 npm warn deprecated querystring@0.2.1: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+#9 12.54 npm warn deprecated q@1.5.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+#9 12.54 npm warn deprecated
+#9 12.54 npm warn deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+#9 12.58 npm warn deprecated workbox-google-analytics@5.1.4: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
+#9 13.60 npm warn deprecated move-concurrently@1.0.1: This package is no longer supported.
+#9 13.77 npm warn deprecated lodash.template@4.5.0: This package is deprecated. Use https://socket.dev/npm/package/eta instead.
+#9 14.59 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+#9 15.06 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+#9 15.19 npm warn deprecated flatten@1.0.3: flatten is deprecated in favor of utility frameworks such as lodash.
+#9 15.27 npm warn deprecated figgy-pudding@3.5.2: This module is no longer supported.
+#9 15.32 npm warn deprecated fs-write-stream-atomic@1.0.10: This package is no longer supported.
+#9 15.95 npm warn deprecated domexception@2.0.1: Use your platform's native DOMException instead
+#9 16.38 npm warn deprecated copy-concurrently@1.0.5: This package is no longer supported.
+#9 16.41 npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+#9 17.28 npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+#9 17.29 npm warn deprecated babel-eslint@10.1.0: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
+#9 17.89 npm warn deprecated @npmcli/move-file@1.1.2: This functionality has been moved to @npmcli/fs
+#9 18.17 npm warn deprecated @humanwhocodes/config-array@0.5.0: Use @eslint/config-array instead
+#9 18.17 npm warn deprecated @hapi/topo@3.1.6: This version has been deprecated and is no longer supported or maintained
+#9 18.23 npm warn deprecated @hapi/bourne@1.3.2: This version has been deprecated and is no longer supported or maintained
+#9 18.55 npm warn deprecated @humanwhocodes/object-schema@1.2.1: Use @eslint/object-schema instead
+#9 18.59 npm warn deprecated @hapi/address@2.1.4: Moved to 'npm install @sideway/address'
+#9 18.86 npm warn deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+#9 18.86 npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+#9 18.90 npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+#9 18.90 npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+#9 18.90 npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+#9 19.32 npm warn deprecated @hapi/hoek@8.5.1: This version has been deprecated and is no longer supported or maintained
+#9 19.85 npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+#9 20.08 npm warn deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+#9 21.54 npm warn deprecated @hapi/joi@15.1.1: Switch to 'npm install joi'
+#9 22.25 npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+#9 23.82 npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+#9 24.05 npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+#9 24.28 npm warn deprecated @babel/plugin-proposal-private-property-in-object@7.21.11: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+#9 25.71 npm warn deprecated @material-ui/styles@4.11.5: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
+#9 27.28 npm warn deprecated eslint@7.32.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+#9 31.49 npm warn deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+#9 33.75 npm warn deprecated @material-ui/core@4.12.4: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
+#9 52.40 
+#9 52.40 added 2320 packages, and audited 2529 packages in 52s
+#9 52.40 
+#9 52.40 251 packages are looking for funding
+#9 52.40   run `npm fund` for details
+#9 52.58 
+#9 52.58 137 vulnerabilities (98 moderate, 32 high, 7 critical)
+#9 52.58 
+#9 52.58 To address issues that do not require attention, run:
+#9 52.58   npm audit fix
+#9 52.58 
+#9 52.58 To address all issues (including breaking changes), run:
+#9 52.58   npm audit fix --force
+#9 52.58 
+#9 52.58 Run `npm audit` for details.
+#9 52.58 npm notice
+#9 52.58 npm notice New major version of npm available! 10.8.2 -> 11.6.0
+#9 52.58 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.0
+#9 52.58 npm notice To update run: npm install -g npm@11.6.0
+#9 52.58 npm notice
+#9 DONE 54.4s
+
+#10 [5/6] RUN npm install
+#10 5.606 npm warn ERESOLVE overriding peer dependency
+#10 5.607 npm warn While resolving: react-only-when@1.0.2
+#10 5.607 npm warn Found: react@17.0.2
+#10 5.607 npm warn node_modules/react
+#10 5.607 npm warn   react@"^17.0.1" from the root project
+#10 5.607 npm warn   58 more (@ant-design/icons, @ant-design/react-slick, ...)
+#10 5.607 npm warn
+#10 5.607 npm warn Could not resolve dependency:
+#10 5.607 npm warn peer react@"^15.0.0 || ^16.0.0" from react-only-when@1.0.2
+#10 5.607 npm warn node_modules/react-elastic-carousel/node_modules/react-only-when
+#10 5.607 npm warn   react-only-when@"^1.0.2" from react-elastic-carousel@0.11.5
+#10 5.607 npm warn   node_modules/react-elastic-carousel
+#10 5.607 npm warn
+#10 5.607 npm warn Conflicting peer dependency: react@16.14.0
+#10 5.607 npm warn node_modules/react
+#10 5.607 npm warn   peer react@"^15.0.0 || ^16.0.0" from react-only-when@1.0.2
+#10 5.607 npm warn   node_modules/react-elastic-carousel/node_modules/react-only-when
+#10 5.607 npm warn     react-only-when@"^1.0.2" from react-elastic-carousel@0.11.5
+#10 5.607 npm warn     node_modules/react-elastic-carousel
+#10 5.648 npm warn ERESOLVE overriding peer dependency
+#10 5.648 npm warn While resolving: react-only-when@1.0.2
+#10 5.648 npm warn Found: react-dom@17.0.2
+#10 5.648 npm warn node_modules/react-dom
+#10 5.648 npm warn   react-dom@"^17.0.1" from the root project
+#10 5.648 npm warn   50 more (@ant-design/icons, @material-ui/core, ...)
+#10 5.648 npm warn
+#10 5.648 npm warn Could not resolve dependency:
+#10 5.648 npm warn peer react-dom@"^15.0.0 || ^16.0.0" from react-only-when@1.0.2
+#10 5.648 npm warn node_modules/react-elastic-carousel/node_modules/react-only-when
+#10 5.648 npm warn   react-only-when@"^1.0.2" from react-elastic-carousel@0.11.5
+#10 5.648 npm warn   node_modules/react-elastic-carousel
+#10 5.648 npm warn
+#10 5.648 npm warn Conflicting peer dependency: react-dom@16.14.0
+#10 5.648 npm warn node_modules/react-dom
+#10 5.648 npm warn   peer react-dom@"^15.0.0 || ^16.0.0" from react-only-when@1.0.2
+#10 5.648 npm warn   node_modules/react-elastic-carousel/node_modules/react-only-when
+#10 5.648 npm warn     react-only-when@"^1.0.2" from react-elastic-carousel@0.11.5
+#10 5.648 npm warn     node_modules/react-elastic-carousel
+#10 5.765 npm warn ERESOLVE overriding peer dependency
+#10 5.766 npm warn While resolving: react-swipeable@5.5.1
+#10 5.766 npm warn Found: react@17.0.2
+#10 5.766 npm warn node_modules/react
+#10 5.766 npm warn   react@"^17.0.1" from the root project
+#10 5.766 npm warn   58 more (@ant-design/icons, @ant-design/react-slick, ...)
+#10 5.766 npm warn
+#10 5.766 npm warn Could not resolve dependency:
+#10 5.766 npm warn peer react@"^16.0.0-0" from react-swipeable@5.5.1
+#10 5.766 npm warn node_modules/react-elastic-carousel/node_modules/react-swipeable
+#10 5.766 npm warn   react-swipeable@"^5.5.1" from react-elastic-carousel@0.11.5
+#10 5.766 npm warn   node_modules/react-elastic-carousel
+#10 5.766 npm warn
+#10 5.766 npm warn Conflicting peer dependency: react@16.14.0
+#10 5.766 npm warn node_modules/react
+#10 5.766 npm warn   peer react@"^16.0.0-0" from react-swipeable@5.5.1
+#10 5.766 npm warn   node_modules/react-elastic-carousel/node_modules/react-swipeable
+#10 5.766 npm warn     react-swipeable@"^5.5.1" from react-elastic-carousel@0.11.5
+#10 5.766 npm warn     node_modules/react-elastic-carousel
+#10 11.71 
+#10 11.71 added 8 packages, removed 17 packages, changed 1 package, and audited 2520 packages in 11s
+#10 11.71 
+#10 11.71 252 packages are looking for funding
+#10 11.71   run `npm fund` for details
+#10 11.88 
+#10 11.88 139 vulnerabilities (100 moderate, 32 high, 7 critical)
+#10 11.88 
+#10 11.88 To address issues that do not require attention, run:
+#10 11.88   npm audit fix
+#10 11.88 
+#10 11.88 To address all issues (including breaking changes), run:
+#10 11.88   npm audit fix --force
+#10 11.88 
+#10 11.88 Run `npm audit` for details.
+#10 DONE 12.0s
+
+#11 [6/6] COPY . .
+#11 DONE 52.2s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 23.5s done
+#12 writing image sha256:7e7fa55cd26535bcfd8a091811001799c827e49e73148c88e3c8780da17c39bb done
+#12 naming to docker.io/brahmamk015/bookmyshow:latest 0.0s done
+#12 DONE 23.5s
++ echo Pushing Docker image to registry...
+Pushing Docker image to registry...
++ docker push brahmamk015/bookmyshow:latest
+The push refers to repository [docker.io/brahmamk015/bookmyshow]
+29fd41b1b706: Preparing
+97fa41e04c0b: Preparing
+bbfd224eee85: Preparing
+da1ad111fae3: Preparing
+7e13c6eec375: Preparing
+d2a991bcab4d: Preparing
+b624aa2d5ea2: Preparing
+d399c9dc306f: Preparing
+84f9fa179c1b: Preparing
+ce84ba212e49: Preparing
+e4dc8cd9ecc8: Preparing
+6428cc293366: Preparing
+2f7436e79a0b: Preparing
+ce84ba212e49: Waiting
+d2a991bcab4d: Waiting
+b624aa2d5ea2: Waiting
+d399c9dc306f: Waiting
+84f9fa179c1b: Waiting
+2f7436e79a0b: Waiting
+e4dc8cd9ecc8: Waiting
+6428cc293366: Waiting
+7e13c6eec375: Pushed
+da1ad111fae3: Pushed
+d2a991bcab4d: Layer already exists
+b624aa2d5ea2: Layer already exists
+d399c9dc306f: Layer already exists
+84f9fa179c1b: Layer already exists
+ce84ba212e49: Layer already exists
+e4dc8cd9ecc8: Layer already exists
+6428cc293366: Layer already exists
+2f7436e79a0b: Layer already exists
+97fa41e04c0b: Pushed
+29fd41b1b706: Pushed
+bbfd224eee85: Pushed
+latest: digest: sha256:ac08e92801809ab69d251584536e856e93f81519761227e432870ac29c842074 size: 3058
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to Container)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ echo Stopping and removing old container...
+Stopping and removing old container...
++ docker stop bms
+Error response from daemon: No such container: bms
++ true
++ docker rm bms
+Error response from daemon: No such container: bms
++ true
++ echo Running new container on port 3000...
+Running new container on port 3000...
++ docker run -d --restart=always --name bms -p 3000:3000 brahmamk015/bookmyshow:latest
+f4979fd02835ffc4cc07813e6d0648c7c0670c23d1f7339e4801b75df7be7c9f
++ echo Checking running containers...
+Checking running containers...
++ docker ps -a
+CONTAINER ID   IMAGE                           COMMAND                  CREATED                  STATUS                  PORTS                                         NAMES
+f4979fd02835   brahmamk015/bookmyshow:latest   "docker-entrypoint.s…"   Less than a second ago   Up Less than a second   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   bms
+8a150da0cc1a   sonarqube:lts-community         "/opt/sonarqube/dock…"   About an hour ago        Up About an hour        0.0.0.0:9000->9000/tcp, [::]:9000->9000/tcp   sonar
++ echo Fetching logs...
+Fetching logs...
++ sleep 5
++ docker logs bms
+
+> bookmyshow-app@0.1.0 start
+> NODE_OPTIONS=--openssl-legacy-provider react-scripts start
+
+[34mℹ[39m [90m｢wds｣[39m: Project is running at http://172.17.0.3/
+[34mℹ[39m [90m｢wds｣[39m: webpack output is served from 
+[34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /app/public
+[34mℹ[39m [90m｢wds｣[39m: 404s will fallback to /
+Starting the development server...
+
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] emailext
+Sending email to: sakamuriveera@gmail.com
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
